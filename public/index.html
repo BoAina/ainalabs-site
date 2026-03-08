@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aina Labs</title>
+  <meta
+    name="description"
+    content="Enterprise AI workflows, governed automation, and applied prototypes for regulated systems."
+  />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a31;
+      --text: #e8ecf3;
+      --muted: #a8b3c7;
+      --accent: #7dd3fc;
+      --line: #25304a;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(180deg, #0b1020 0%, #0f172a 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 4.25rem);
+      line-height: 1.05;
+      margin: 0 0 16px 0;
+    }
+
+    .sub {
+      max-width: 720px;
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #06111f;
+      border-color: transparent;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      margin-top: 12px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      background: rgba(125, 211, 252, 0.05);
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      margin: 0 0 8px 0;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .card-plain {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .card-plain h2 {
+      font-size: 1rem;
+      margin: 0 0 8px 0;
+    }
+
+    .card-plain p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    footer {
+      margin-top: 56px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    a.inline {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a.inline:hover,
+    .button:hover {
+      opacity: 0.92;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="eyebrow">Aina Labs</div>
+    <h1>Enterprise AI workflows, governed automation, and applied prototypes.</h1>
+    <p class="sub">
+      Aina Labs is a small portfolio site for experiments and write-ups at the intersection
+      of AI systems, policy-constrained workflows, and regulated enterprise environments.
+    </p>
+
+    <div class="actions">
+      <a class="button primary" href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="button" href="https://www.linkedin.com/in/boaina/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+
+    <section class="grid">
+      <a class="card" href="https://github.com/BoAina/ai-spend-governance-control-plane" target="_blank" rel="noopener noreferrer">
+        <h2>AI Spend Governance Control Plane</h2>
+        <p>
+          AI reasons. Policy decides. Authorization executes. Ledger records.
+        </p>
+      </a>
+
+      <a class="card" href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">
+        <h2>Deterministic AI Control Plane</h2>
+        <p>
+          Governed LLM workflow prototype for regulated finance and healthcare contexts.
+        </p>
+      </a>
+
+      <div class="card-plain">
+        <h2>More coming soon</h2>
+        <p>
+          Short project notes, architecture write-ups, and repo explainers.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      Built by Bo Aina &nbsp;&middot;&nbsp; <a class="inline" href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">github.com/BoAina</a>
+    </footer>
+  </main>
+</body>
+</html>
