@@ -183,66 +183,45 @@
     <p class="subtitle">How Funds-Aware Authorization Could Redefine Pre-Spend Control</p>
     <p class="byline">By Bo Aina &nbsp;&middot;&nbsp; Senior Solution Engineer, Oracle &nbsp;&middot;&nbsp; Oracle Fusion AI Agent Studio Certified</p>
 
-    <p>Enterprise finance typically follows a familiar sequence: someone spends, the transaction lands, approvals happen, coding gets fixed, and the ledger absorbs the truth after the fact. ERP systems were built to do that job well, and they remain the system of record. Increasingly, though, control is moving upstream - closer to the moment a transaction is about to happen. In some cases, the ERP and the payment network are already communicating directly at authorization time, as Oracle's partnership with JP Morgan on touchless corporate card workflows demonstrates.</p>
+    <p>Every corporate card transaction passes through an authorization decision that takes less than two seconds. That decision is faster than it has ever been. It is also, in most cases, working with a fraction of the financial picture.</p>
 
-    <p>That shift becomes clearer when you look at modern spend platforms. Ramp used Stripe Issuing to power its card program, built custom authorization and transaction-processing logic with Stripe, and used Stripe's infrastructure to evaluate spending context, apply controls, and make real-time decisions. That is the real breakthrough: authorization became programmable.</p>
+    <p>The authorization layer knows the card limit, the merchant category, the velocity pattern, the policy rules attached to the card. What it typically does not know is what the business knows: what budget remains after commitments, what purchase orders are already in flight against that same cost center, what grant restrictions apply, what the true available balance looks like once encumbrances are counted. That information lives in the ERP. And for most of financial history, the ERP has spoken after the fact.</p>
 
-    <p>Once authorization becomes programmable, the finance conversation changes. The question is no longer just, "Was this expense okay after it happened?" It becomes, "Should this transaction happen at all?" That is a much more powerful place to operate. It is also where modern spend platforms are clearly heading - budget workflows that evaluate purchases against available funds, route approvals based on remaining budget, and surface budget status during the approval process.</p>
+    <p>That is starting to change - and the change is coming from an unexpected direction.</p>
 
-    <p>But there is a twist, and it is the twist that matters most.</p>
+    <p class="callout">When authorization became programmable, the finance conversation changed permanently.</p>
 
-    <p class="callout">Card-level controls and true financial capacity are two different layers.</p>
+    <p>Modern spend platforms built programmable authorization infrastructure on top of card networks. They could now evaluate spending context in real time, apply policy logic, and make decisions before a transaction completed. Oracle's partnership with JP Morgan on touchless corporate card workflows points in the same direction from the ERP side: the payment network and the financial system communicating directly at authorization time, not just at reconciliation time.</p>
 
-    <p>A transaction can be valid at the card layer and still need deeper context at the business layer. The merchant may be allowed. The employee may be authorized. The card may have room. But somewhere else in the business, dollars may have just been committed against that same department, project, grant, or initiative. That is where the next frontier begins: extending authorization decisions to include whether a transaction is still economically valid in the full business context.</p>
+    <p>The question that programmable authorization opens up is not just "was this expense allowed?" It is "should this transaction happen given everything the business knows right now?" That is a fundamentally more powerful place to operate. And it is also where the gap becomes visible.</p>
 
-    <p>Oracle's budgetary control framework has long described funds availability in exactly these terms: available budget after commitments, encumbrances, and related controls are taken into account. The concept is not new. What is new is the possibility of bringing it to bear at the authorization moment, before money moves.</p>
+    <p class="callout">A card limit and a true available balance are two different numbers.</p>
 
-    <p class="callout">The most interesting future here is spend intelligence and ERP intelligence working together.</p>
+    <p>A transaction can be clean at the card layer and still be wrong at the business layer. The merchant is approved. The employee is authorized. The card has room. But somewhere in the organization, dollars may have just been committed against that same department, project, grant, or initiative. The purchase order was approved this morning. The grant period closes at end of quarter. The ERP knows this. The authorization layer does not.</p>
 
-    <p>The spend platform understands the transaction moment: who is spending, where, how much, on what merchant, and under what policy. The ERP layer understands the deeper economic reality: what budget remains, what commitments already exist, what project or grant constraints apply, and how the transaction should ultimately be represented in the financial system of record.</p>
+    <p>Oracle's budgetary control framework has described funds availability in exactly these terms for years: available budget after actuals, commitments, and encumbrances are accounted for. The concept is not new. What is new is the possibility of bringing that intelligence to bear at the authorization moment - before money moves, not after.</p>
 
-    <p>Oracle Fusion integrations with modern spend platforms already hint at this collaborative model - describing bi-directional sync, real-time visibility, and compliance checks that combine Oracle governance rules with spend platform policy enforcement. The integration points toward a deeper architectural direction.</p>
+    <p>The spend platform brings transaction intelligence: who is spending, where, how much, on what merchant, under what policy. The ERP brings financial intelligence: what budget remains, what commitments exist, what project and grant constraints apply. Each layer knows something the other does not. The opportunity is in the combination.</p>
 
-    <p>What makes this exciting is that both sides are already building toward it. Spend platforms are building strong spend-intelligence layers. Oracle is moving toward an ERP intelligence layer through AI Agent Studio - a design environment for building agents and workflows with access to Fusion data, APIs, and secure external REST connections. In this model, the ERP becomes even more valuable when its budget intelligence participates upstream in authorization decisions alongside the spend platform.</p>
-
-    <p>A useful way to think about the architecture:</p>
+    <p>Oracle Fusion integrations with modern spend platforms already point toward this model - bi-directional sync, real-time visibility, compliance checks that draw on both Oracle governance rules and spend platform policy enforcement. Oracle AI Agent Studio extends this further: a design environment for building agents and workflows with direct access to Fusion data and APIs. The architecture is already moving in this direction. The question is how far it goes.</p>
 
     <pre>Spend intelligence layer
         |
-Funds / context layer
+Funds / context layer  (the missing piece)
         |
 Authorization rails
         |
-Automation layer
-        |
 ERP system of record</pre>
 
-    <p>In that model, the spend platform does not need to query the general ledger live on every swipe. The ERP does not need to become a card processor. Instead, the two intelligence layers contribute what they know to a decision-ready context service: one side brings transaction intent and policy context, the other brings budget, project, and commitment context. The result is a better authorization decision and a cleaner reconciliation process.</p>
+    <p>In that model, the spend platform does not need to query the general ledger live on every swipe. The ERP does not need to become a card processor. The two intelligence layers contribute what they know to a shared authorization context: one side brings transaction intent and policy, the other brings budget reality and commitment state. The authorization decision gets smarter. The downstream reconciliation gets cleaner. Both outcomes matter.</p>
 
-    <p>Of course, the hard part is not the idea. The hard part is the engineering.</p>
+    <p>The engineering challenge is real and specific. Authorization decisions happen synchronously - the network expects a response in under two seconds or falls back to configured timeout behavior. ERP systems were not designed for sub-100ms query response times. Budget data is often updated in batch cycles, not in real time. Making financial context fresh enough and fast enough to participate in the authorization path is an integration problem, not a conceptual one. It is solvable - through intelligent caching, event-driven invalidation, and agreed thresholds for data freshness - but it requires both sides to treat the authorization moment as a first-class concern.</p>
 
-    <p>Real-time authorization decisions happen synchronously. If the platform does not respond within approximately two seconds, the network falls back to the configured timeout behavior. That means the challenge is not whether funds-aware authorization would help customers - it almost certainly would. The challenge is how to make budget and commitment context fresh, trusted, and fast enough to participate in the authorization path.</p>
+    <p class="callout">The financial system has always been smart after the fact. The opportunity now is to make it smart before.</p>
 
-    <p>That is exactly why this matters. If solved well, it would be better for everyone involved:</p>
+    <p>Employees would get guidance at the moment of spend instead of correction after it. Managers would approve against real budget context instead of card limits. Finance would see fewer surprises and cleaner downstream accounting. The system of action and the system of record would finally be working from the same picture at the same time.</p>
 
-    <ul>
-      <li>Employees get clearer guidance before they spend instead of correction after they spend</li>
-      <li>Managers approve against real budget context, not just card limits</li>
-      <li>Finance gets fewer surprises and cleaner downstream accounting</li>
-      <li>Customers get a system that is smarter at the point where financial intent becomes financial commitment</li>
-    </ul>
-
-    <p>The real opportunity is connecting the system of action and the system of record through cooperating intelligence layers.</p>
-
-    <p>The traditional sequence:</p>
-    <pre>Spend &rarr; Record &rarr; Review &rarr; Correct</pre>
-
-    <p>The emerging sequence:</p>
-    <pre>Policy &rarr; Context &rarr; Authorize &rarr; Spend &rarr; Record</pre>
-
-    <p>And the most compelling version of that model: when spend intelligence meets ERP intelligence, pre-spend control becomes genuinely funds-aware.</p>
-
-    <p>That is exactly the kind of problem worth solving. The more context that is available at the point of decision, the better the outcome for customers, operators, and the business as a whole.</p>
+    <p>That is what funds-aware authorization actually means. When spend intelligence meets ERP intelligence at the point of authorization, pre-spend control stops being a policy layer and starts being a financial reality check. That is a different kind of system - and a more honest one.</p>
 
     <div class="sources">
       <h2>Sources</h2>
