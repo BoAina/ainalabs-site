@@ -4,212 +4,489 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aina Labs</title>
-  <meta
-    name="description"
-    content="Enterprise AI workflows, governed automation, and applied prototypes for regulated systems."
-  />
+  <meta name="description" content="Enterprise AI workflows, governed automation, and applied prototypes for regulated systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b1020;
-      --panel: #121a31;
-      --text: #e8ecf3;
-      --muted: #a8b3c7;
-      --accent: #7dd3fc;
-      --line: #25304a;
+      --bg:       #ffffff;
+      --text:     #0a0a0a;
+      --muted:    #6b6b6b;
+      --faint:    #f2f2f2;
+      --line:     #e5e5e5;
+      --accent:   #0a0a0a;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(180deg, #0b1020 0%, #0f172a 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .wrap {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 72px 24px;
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 0 40px;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .eyebrow {
-      color: var(--accent);
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 6vw, 4.25rem);
-      line-height: 1.05;
-      margin: 0 0 16px 0;
-    }
-
-    .sub {
-      max-width: 720px;
-      font-size: 1.15rem;
-      color: var(--muted);
-      margin-bottom: 32px;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 48px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 12px 16px;
-      border-radius: 12px;
+    .nav-brand {
+      display: flex; align-items: baseline; gap: 2px;
       text-decoration: none;
-      font-weight: 600;
-      border: 1px solid var(--line);
-      color: var(--text);
-      background: rgba(255,255,255,0.03);
     }
-
-    .button.primary {
-      background: var(--accent);
-      color: #06111f;
-      border-color: transparent;
+    .nav-brand .heavy { font-weight: 900; font-size: 1.1rem; color: var(--text); letter-spacing: -0.02em; }
+    .nav-brand .light  { font-weight: 300; font-size: 1.1rem; color: var(--text); letter-spacing: 0; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.875rem; font-weight: 400;
+      color: var(--muted); letter-spacing: 0.01em;
+      transition: color 0.15s;
     }
+    .nav-links a:hover { color: var(--text); }
 
-    .grid {
+    /* ── HERO ── */
+    .hero {
+      padding: 140px 40px 80px;
+      max-width: 1100px; margin: 0 auto;
       display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      margin-top: 12px;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
+    .hero-left {}
+    .hero-eyebrow {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero h1 .light-word {
+      font-weight: 300;
+      display: block;
+    }
+    .hero-sub {
+      font-size: 1.05rem; font-weight: 300;
+      color: var(--muted); line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 11px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.875rem; font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: all 0.15s;
+      border: 1.5px solid var(--text);
+      color: var(--text);
+    }
+    .btn.primary {
+      background: var(--text); color: var(--bg);
+    }
+    .btn.primary:hover { background: #333; border-color: #333; }
+    .btn.ghost:hover { background: var(--faint); }
 
-    .card {
-      background: rgba(255,255,255,0.03);
+    /* ── WAVE SVG ── */
+    .hero-right {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .wave-wrap {
+      width: 100%; max-width: 420px;
+    }
+    .wave-wrap svg { width: 100%; height: auto; display: block; }
+
+    /* ── SECTION COMMON ── */
+    .section {
+      max-width: 1100px; margin: 0 auto;
+      padding: 72px 40px;
+      border-top: 1px solid var(--line);
+    }
+    .section-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 36px;
+    }
+    .section-label {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .section-title {
+      font-size: 1.75rem; font-weight: 900;
+      letter-spacing: -0.02em; margin-bottom: 4px;
+    }
+    .section-sub {
+      font-size: 0.9rem; color: var(--muted); font-weight: 300;
+    }
+    .see-all {
+      font-size: 0.8rem; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.02em;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .see-all:hover { color: var(--text); border-color: var(--text); }
+
+    /* ── API SERIES ── */
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--line);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .series-card {
+      background: var(--bg);
+      padding: 28px;
       text-decoration: none;
       color: inherit;
       display: block;
-      transition: border-color 0.15s ease, background 0.15s ease;
+      transition: background 0.15s;
+      position: relative;
+    }
+    .series-card:hover { background: var(--faint); }
+    .series-card.coming-soon { cursor: default; }
+    .series-card.coming-soon:hover { background: var(--bg); }
+    .episode-num {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+    .episode-letter {
+      font-size: 2.5rem; font-weight: 900;
+      letter-spacing: -0.03em; line-height: 1;
+      margin-bottom: 10px;
+    }
+    .episode-title {
+      font-size: 1rem; font-weight: 600;
+      margin-bottom: 8px; line-height: 1.3;
+    }
+    .episode-desc {
+      font-size: 0.875rem; color: var(--muted);
+      font-weight: 300; line-height: 1.55;
+    }
+    .episode-tag {
+      display: inline-block; margin-top: 16px;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 4px;
+      background: var(--text); color: var(--bg);
+    }
+    .episode-tag.draft {
+      background: var(--faint); color: var(--muted);
     }
 
-    .card:hover {
-      border-color: var(--accent);
-      background: rgba(125, 211, 252, 0.05);
+    /* ── PROJECTS ── */
+    .projects-list { display: flex; flex-direction: column; gap: 0; }
+    .project-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none; color: inherit;
+      gap: 24px;
+      transition: background 0.12s;
+    }
+    .project-row:first-child { border-top: 1px solid var(--line); }
+    .project-row:hover .project-name { text-decoration: underline; }
+    .project-meta { flex: 1; }
+    .project-name {
+      font-size: 0.975rem; font-weight: 600; margin-bottom: 3px;
+    }
+    .project-desc {
+      font-size: 0.85rem; color: var(--muted); font-weight: 300;
+    }
+    .project-tag {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+      border: 1px solid var(--line); padding: 3px 9px; border-radius: 4px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .project-arrow {
+      font-size: 1rem; color: var(--muted); flex-shrink: 0;
     }
 
-    .card h2 {
-      font-size: 1rem;
-      margin: 0 0 8px 0;
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      background: var(--text);
+      color: var(--bg);
     }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.97rem;
+    .about-strip .section {
+      border-top: none;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
     }
-
-    .card-plain {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 20px;
+    .about-strip .section-label { color: rgba(255,255,255,0.45); }
+    .about-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 900; letter-spacing: -0.025em;
+      line-height: 1.1; margin-bottom: 20px;
     }
-
-    .card-plain h2 {
-      font-size: 1rem;
-      margin: 0 0 8px 0;
+    .about-title .light-word { font-weight: 300; display: block; }
+    .about-body {
+      font-size: 0.95rem; font-weight: 300;
+      line-height: 1.75; color: rgba(255,255,255,0.75);
     }
-
-    .card-plain p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.97rem;
+    .about-links { display: flex; flex-direction: column; gap: 16px; }
+    .about-link {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      text-decoration: none; color: var(--bg);
+      font-size: 0.9rem; font-weight: 500;
+      transition: background 0.15s, border-color 0.15s;
     }
+    .about-link:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.25); }
+    .about-link span { color: rgba(255,255,255,0.45); font-size: 0.8rem; font-weight: 300; }
 
+    /* ── FOOTER ── */
     footer {
-      margin-top: 56px;
-      color: var(--muted);
-      font-size: 0.92rem;
+      border-top: 1px solid var(--line);
+      padding: 28px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1100px; margin: 0 auto;
     }
-
-    a.inline {
-      color: var(--accent);
-      text-decoration: none;
+    .footer-brand {
+      display: flex; align-items: baseline; gap: 2px;
     }
+    .footer-brand .heavy { font-weight: 900; font-size: 0.95rem; }
+    .footer-brand .light  { font-weight: 300; font-size: 0.95rem; }
+    footer p { font-size: 0.8rem; color: var(--muted); font-weight: 300; }
 
-    a.inline:hover,
-    .button:hover {
-      opacity: 0.92;
+    /* ── DIVIDER WAVE ── */
+    .wave-divider { width: 100%; overflow: hidden; line-height: 0; }
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      nav { padding: 0 20px; }
+      .hero { grid-template-columns: 1fr; padding: 110px 20px 60px; gap: 40px; }
+      .hero-right { display: none; }
+      .section { padding: 52px 20px; }
+      .about-strip .section { grid-template-columns: 1fr; }
+      footer { padding: 24px 20px; flex-direction: column; gap: 8px; text-align: center; }
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <div class="eyebrow">Aina Labs</div>
-    <h1>Enterprise AI workflows, governed automation, and applied prototypes for finance.</h1>
-    <p class="sub">
-      Aina Labs is a portfolio of applied architecture, prototypes, and technical essays exploring AI systems in regulated enterprise and government financial environments.
-    </p>
 
-    <div class="actions">
-      <a class="button primary" href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a class="button" href="https://www.linkedin.com/in/boaina/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-brand" href="/">
+      <span class="heavy">aina</span><span class="light">labs</span>
+    </a>
+    <div class="nav-links">
+      <a href="#series">API Series</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">ainalabs.ai</div>
+      <h1>
+        Governed AI.<br>
+        <span class="light-word">Real Systems.</span>
+      </h1>
+      <p class="hero-sub">
+        Enterprise AI workflows, deterministic control planes, and applied prototypes
+        for regulated environments — where AI reasons, policy decides, and every action is auditable.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#series">Read the API Series</a>
+        <a class="btn ghost" href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="wave-wrap">
+        <!-- Parametric wave — echoes the aina labs logo mark -->
+        <svg viewBox="0 0 420 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#0a0a0a" stroke-width="0.8" opacity="0.85">
+            <!-- Wave ribbon: 28 offset bezier curves sweeping from lower-left to upper-right -->
+            <path d="M 20 440 C 80 380, 160 260, 260 180 S 380 80, 410 40"/>
+            <path d="M 20 455 C 80 392, 162 272, 262 192 S 382 90, 410 52"/>
+            <path d="M 20 470 C 80 404, 164 284, 264 204 S 384 100, 410 64"/>
+            <path d="M 18 430 C 78 368, 158 248, 258 168 S 378 70, 408 28"/>
+            <path d="M 16 418 C 76 356, 156 236, 256 156 S 376 60, 406 18"/>
+            <path d="M 14 406 C 74 344, 154 224, 254 144 S 374 50, 404 10"/>
+            <path d="M 12 394 C 72 332, 152 212, 252 132 S 372 40, 402 4"/>
+            <path d="M 10 382 C 70 320, 150 200, 250 120 S 370 30, 400 0"/>
+            <path d="M 8 370  C 68 308, 148 188, 248 108 S 368 22, 398 -6"/>
+            <path d="M 6 358  C 66 296, 146 176, 246  96 S 366 14, 396 -12"/>
+            <path d="M 4 346  C 64 284, 144 164, 244  84 S 364  6, 394 -18"/>
+            <path d="M 2 334  C 62 272, 142 152, 242  72 S 362 -2, 392 -24"/>
+            <path d="M 0 322  C 60 260, 140 140, 240  60 S 360 -10, 390 -30"/>
+            <!-- Lower spread -->
+            <path d="M 22 450 C 82 390, 164 270, 264 190 S 383 88, 411 46"/>
+            <path d="M 26 462 C 86 400, 168 280, 268 200 S 386 96, 413 56"/>
+            <path d="M 30 472 C 90 410, 172 290, 272 210 S 390 106, 415 68"/>
+            <path d="M 34 480 C 94 418, 176 298, 276 218 S 394 114, 417 78"/>
+            <path d="M 40 480 C 100 424, 182 304, 280 224 S 398 120, 419 86"/>
+            <path d="M 48 480 C 108 430, 190 310, 286 230 S 403 126, 420 92"/>
+            <path d="M 58 480 C 118 436, 198 316, 292 236 S 408 132, 420 98"/>
+            <path d="M 70 480 C 130 442, 208 322, 298 242 S 413 138, 420 104"/>
+            <path d="M 84 480 C 144 448, 218 328, 304 248 S 416 143, 420 110"/>
+            <path d="M 100 480 C 160 454, 230 334, 310 254 S 418 148, 420 116"/>
+            <path d="M 118 480 C 178 460, 244 340, 316 260 S 419 153, 420 122"/>
+            <path d="M 138 480 C 198 464, 258 346, 322 266 S 420 157, 420 128"/>
+            <path d="M 160 480 C 218 468, 272 352, 328 272 S 420 161, 420 134"/>
+            <path d="M 184 480 C 238 472, 286 358, 334 278 S 420 165, 420 140"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- API SERIES -->
+  <section class="section" id="series">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Writing</div>
+        <div class="section-title">The API Series</div>
+        <div class="section-sub">A Day in the Life of an API — one letter at a time.</div>
+      </div>
+      <a class="see-all" href="/apiseries">All Episodes →</a>
     </div>
 
-    <section class="grid">
-      <a class="card" href="https://github.com/BoAina/ai-spend-governance-control-plane" target="_blank" rel="noopener noreferrer">
-        <h2>AI Spend Governance Control Plane</h2>
-        <p style="font-weight: 600; margin-bottom: 0.5rem;">
-          AI reasons. Policy decides. Authorization executes. Ledger records.
-        </p>
-        <p>
-          Procurement authorization prototype, AI-assisted classification, deterministic spend controls, and audit-ready decisions for grant-funded and regulated environments.
-        </p>
+    <div class="series-grid">
+      <!-- Published: I -->
+      <a class="series-card" href="/apiseries/i-invoke-async">
+        <div class="episode-num">Episode 01 · Published</div>
+        <div class="episode-letter">I</div>
+        <div class="episode-title">Invoke Async</div>
+        <div class="episode-desc">
+          The front desk that never makes you wait. Job IDs, polling loops,
+          and the WAITING state that isn't a flaw — it's the system working exactly as designed.
+        </div>
+        <div class="episode-tag">Read →</div>
       </a>
 
-      <a class="card" href="https://github.com/BoAina/deterministic-ai-control-plane" target="_blank" rel="noopener noreferrer">
-        <h2>Deterministic AI Control Plane</h2>
-        <p style="font-weight: 600; margin-bottom: 0.5rem;">
-          AI interprets. Rules constrain. Policy gates. Action proceeds.
-        </p>
-        <p>
-          A general-purpose control plane for governing AI agent actions through deterministic rules, applicable wherever probabilistic outputs must be bounded by policy.
-        </p>
+      <!-- Coming: A -->
+      <div class="series-card coming-soon">
+        <div class="episode-num">Episode 02 · Coming</div>
+        <div class="episode-letter" style="color:#c8c8c8;">A</div>
+        <div class="episode-title" style="color:#aaa;">Authenticate</div>
+        <div class="episode-desc" style="color:#bbb;">
+          The velvet rope at the door. Tokens, scopes, and why your API
+          needs to know who you are before it will do anything for you.
+        </div>
+        <div class="episode-tag draft">Coming Soon</div>
+      </div>
+
+      <!-- Coming: P -->
+      <div class="series-card coming-soon">
+        <div class="episode-num">Episode 03 · Coming</div>
+        <div class="episode-letter" style="color:#c8c8c8;">P</div>
+        <div class="episode-title" style="color:#aaa;">Parse</div>
+        <div class="episode-desc" style="color:#bbb;">
+          The interpreter that turns raw bytes into meaning.
+          Schema validation, type coercion, and the art of failing gracefully at the edge.
+        </div>
+        <div class="episode-tag draft">Coming Soon</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Open Source</div>
+        <div class="section-title">Projects</div>
+        <div class="section-sub">Architecture experiments and governed automation prototypes.</div>
+      </div>
+      <a class="see-all" href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">All on GitHub →</a>
+    </div>
+
+    <div class="projects-list">
+      <a class="project-row" href="https://github.com/BoAina/ai-spend-governance-control-plane" target="_blank" rel="noopener noreferrer">
+        <div class="project-meta">
+          <div class="project-name">AI Spend Governance Control Plane</div>
+          <div class="project-desc">AI reasons. Policy decides. Authorization executes. Ledger records. A deterministic control architecture for regulated finance.</div>
+        </div>
+        <div class="project-tag">Python · Finance</div>
+        <div class="project-arrow">↗</div>
       </a>
 
-      <a class="card" href="/essays/when-spend-intelligence-meets-erp-intelligence.html">
-        <h2>When Spend Intelligence Meets ERP Intelligence</h2>
-        <p style="font-weight: 600; margin-bottom: 0.5rem;">
-          How financial context aware authorization could redefine pre-spend control.
-        </p>
-        <p>
-          On the convergence of spend platforms and ERP budget intelligence at the moment of authorization.
-        </p>
+      <a class="project-row" href="https://github.com/BoAina/deterministic-ai-control-plane" target="_blank" rel="noopener noreferrer">
+        <div class="project-meta">
+          <div class="project-name">Deterministic AI Control Plane</div>
+          <div class="project-desc">Governed LLM workflow prototype for regulated finance and healthcare contexts. Rules before reasoning.</div>
+        </div>
+        <div class="project-tag">Python · Healthcare</div>
+        <div class="project-arrow">↗</div>
       </a>
-    </section>
 
-    <section style="margin-top: 3rem;">
-      <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7dd3fc; margin-bottom: 1rem;">Series</div>
-      <h2 style="font-size: 1.4rem; font-weight: 800; margin: 0 0 0.4rem; color: #e8ecf3;">A Day in the Life of an API</h2>
-      <p style="color: #a8b3c7; margin-bottom: 1.5rem;">26 characters. A to Z. One every two weeks. APIs explained through the people they would be if they had a story to tell.</p>
-      <a class="card" href="/apiseries/i-invoke-async.html" style="display: block; text-decoration: none;">
-        <h2>I: Invoke Async</h2>
-        <p style="font-weight: 600; margin-bottom: 0.5rem;">
-          The front desk that never makes you wait on hold.
-        </p>
-        <p>
-          On asynchronous integration, the Job ID handoff, the WAITING state, and why enterprise AI that can pause for human judgment is enterprise AI you can trust.
-        </p>
-      </a>
-    </section>
+      <div class="project-row" style="cursor:default;">
+        <div class="project-meta">
+          <div class="project-name" style="color:#aaa;">SQL Sensei</div>
+          <div class="project-desc" style="color:#bbb;">Finance-domain SQL learning app. 11 phases, 43 lessons, built around ERP data models.</div>
+        </div>
+        <div class="project-tag" style="color:#ccc; border-color:#e8e8e8;">JSX · In Progress</div>
+        <div class="project-arrow" style="color:#ccc;">—</div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-      Bo Aina &nbsp;&middot;&nbsp; Enterprise financial systems, spend controls, and AI workflows &nbsp;&middot;&nbsp; <a class="inline" href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">github.com/BoAina</a>
-    </footer>
-  </main>
+  <!-- ABOUT -->
+  <div class="about-strip" id="about">
+    <div class="section">
+      <div>
+        <div class="section-label">About</div>
+        <div class="about-title">
+          Bo Aina.<br>
+          <span class="light-word">Financial systems architect.</span>
+        </div>
+        <p class="about-body" style="margin-top:0;">
+          Solution Engineer at Ramp, focused on regulated enterprise environments — healthcare,
+          higher education, public sector. Building at the intersection of AI governance,
+          ERP integration, and programmable financial infrastructure.<br><br>
+          The API Series is a writing project exploring how modern APIs actually work —
+          not the happy path, but the full lifecycle, including the waiting, the policy gates,
+          and the audit trail that makes it trustworthy.
+        </p>
+      </div>
+      <div class="about-links">
+        <a class="about-link" href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">
+          GitHub — BoAina <span>↗</span>
+        </a>
+        <a class="about-link" href="https://www.linkedin.com/in/boaina/" target="_blank" rel="noopener noreferrer">
+          LinkedIn — Bo Aina <span>↗</span>
+        </a>
+        <a class="about-link" href="mailto:boaina@gmail.com">
+          boaina@gmail.com <span>→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <span class="heavy">aina</span><span class="light">labs</span>
+    </div>
+    <p>ainalabs.ai &nbsp;·&nbsp; Built by Bo Aina</p>
+  </footer>
+
 </body>
 </html>
