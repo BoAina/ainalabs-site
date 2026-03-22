@@ -229,6 +229,44 @@
       border-top: 1px solid var(--line);
     }
 
+    /* ── APPLICATIONS ── */
+    .applies-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .applies-card {
+      background: var(--bg);
+      padding: 28px;
+      min-height: 200px;
+    }
+    .applies-kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .applies-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .applies-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 44ch;
+    }
+
     /* ── API SERIES ── */
     .series-grid {
       display: grid;
@@ -366,6 +404,7 @@
       .hero { grid-template-columns: 1fr; padding: 110px 20px 60px; gap: 40px; }
       .hero-right { display: none; }
       .section { padding: 52px 20px; }
+      .applies-grid { grid-template-columns: 1fr; }
       .essay-feature { grid-template-columns: 1fr; padding: 24px; }
       .about-strip .section { grid-template-columns: 1fr; }
       footer { padding: 24px 20px; flex-direction: column; gap: 8px; text-align: center; }
@@ -408,6 +447,51 @@
     <div class="hero-right">
       <div class="wave-wrap">
         <img src="aina_labs_symbol_only.svg" alt="aina labs mark" />
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATIONS -->
+  <section class="section" id="applies">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Applications</div>
+        <div class="section-title">Where This Architecture Applies</div>
+        <div class="section-sub">Control-first AI systems for environments where policy, auditability, and system boundaries matter.</div>
+      </div>
+    </div>
+
+    <div class="applies-grid">
+      <div class="applies-card">
+        <div class="applies-kicker">01</div>
+        <div class="applies-title">Healthcare &amp; Life Sciences</div>
+        <div class="applies-desc">
+          Governed AI workflows in clinical, revenue cycle, and grants environments where compliance is non-negotiable.
+        </div>
+      </div>
+
+      <div class="applies-card">
+        <div class="applies-kicker">02</div>
+        <div class="applies-title">Financial Infrastructure &amp; Payments</div>
+        <div class="applies-desc">
+          Real-time authorization, spend control, and ERP-integrated decisioning before money moves.
+        </div>
+      </div>
+
+      <div class="applies-card">
+        <div class="applies-kicker">03</div>
+        <div class="applies-title">Public Sector &amp; Education</div>
+        <div class="applies-desc">
+          Policy-driven systems for grants, funding, and institutional operations under regulatory constraints.
+        </div>
+      </div>
+
+      <div class="applies-card">
+        <div class="applies-kicker">04</div>
+        <div class="applies-title">Enterprise Operations</div>
+        <div class="applies-desc">
+          AI-augmented workflows embedded inside systems of record without breaking control boundaries.
+        </div>
       </div>
     </div>
   </section>
