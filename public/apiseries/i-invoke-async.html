@@ -39,17 +39,15 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-brand {
-      display: flex; align-items: center; gap: 8px;
+      display: flex; align-items: baseline; gap: 2px;
       text-decoration: none;
     }
-    .nav-mark { width: 22px; height: 22px; opacity: 0.85; flex-shrink: 0; }
-    .nav-wordmark { display: flex; align-items: baseline; gap: 2px; }
     .nav-brand .heavy { font-weight: 900; font-size: 1.1rem; color: var(--text); letter-spacing: -0.02em; }
-    .nav-brand .light  { font-weight: 300; font-size: 1.1rem; color: var(--text); }
+    .nav-brand .light  { font-weight: 300; font-size: 1.1rem; color: var(--text); letter-spacing: 0; }
     .nav-links { display: flex; gap: 28px; }
     .nav-links a {
       text-decoration: none; font-size: 0.875rem; font-weight: 400;
-      color: var(--muted); transition: color 0.15s;
+      color: var(--muted); letter-spacing: 0.01em; transition: color 0.15s;
     }
     .nav-links a:hover { color: var(--text); }
 
@@ -223,7 +221,11 @@
     footer a:hover { text-decoration: underline; }
 
     @media (max-width: 720px) {
-      nav { padding: 0 20px; }
+      nav { padding: 0 12px; }
+      .nav-brand .heavy,
+      .nav-brand .light { font-size: 0.95rem; }
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: 0.72rem; }
       .wrap { padding: 84px 20px 60px; }
     }
   </style>
@@ -233,14 +235,12 @@
   <!-- NAV -->
   <nav>
     <a class="nav-brand" href="/">
-      <img class="nav-mark" src="../aina_labs_symbol_only.svg" alt="aina labs mark" />
-      <div class="nav-wordmark">
-        <span class="heavy">aina</span><span class="light">labs</span>
-      </div>
+      <span class="heavy">aina</span><span class="light">labs</span>
     </a>
     <div class="nav-links">
       <a href="/apiseries">API Series</a>
-      <a href="/">Home</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#about">About</a>
       <a href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
     </div>
   </nav>
