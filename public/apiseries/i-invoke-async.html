@@ -3,11 +3,343 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Redirecting...</title>
-  <meta http-equiv="refresh" content="0; url=/apiseries/i-invoke-async" />
-  <link rel="canonical" href="https://ainalabs.ai/apiseries/i-invoke-async" />
+  <title>I is for Invoke Async — A Day in the Life of an API</title>
+  <meta name="description" content="The front desk that never makes you wait on hold. A Day in the Life of an API, by Bo Aina." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #ffffff;
+      --text:   #0a0a0a;
+      --muted:  #6b6b6b;
+      --faint:  #f2f2f2;
+      --line:   #e5e5e5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 0 40px;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .nav-mark { width: 22px; height: 22px; opacity: 0.85; flex-shrink: 0; }
+    .nav-wordmark { display: flex; align-items: baseline; gap: 2px; }
+    .nav-brand .heavy { font-weight: 900; font-size: 1.1rem; color: var(--text); letter-spacing: -0.02em; }
+    .nav-brand .light  { font-weight: 300; font-size: 1.1rem; color: var(--text); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.875rem; font-weight: 400;
+      color: var(--muted); transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── ARTICLE WRAP ── */
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 96px 40px 80px;
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+    }
+    .back:hover { color: var(--text); }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.5rem;
+      color: var(--text);
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 0 0 0.75rem;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .byline {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+      font-weight: 400;
+    }
+
+    h2 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin: 2.75rem 0 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    p {
+      margin: 0 0 1.25rem;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    /* ── STATUS BADGES ── */
+    .status {
+      display: inline-block;
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      margin: 0 0.15rem;
+    }
+    .running  { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+    .waiting  { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+    .complete { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+
+    /* ── CALLOUT ── */
+    .callout {
+      font-weight: 500;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin: 2rem 0;
+      padding: 1rem 1.25rem;
+      border-left: 3px solid var(--text);
+      background: var(--faint);
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ── AUTHOR BIO ── */
+    .author-bio {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      background: var(--faint);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .author-bio a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+    .author-bio strong { color: var(--text); }
+
+    /* ── SERIES NAV ── */
+    .series-nav {
+      margin-top: 3.5rem;
+      padding: 1.75rem;
+      background: var(--faint);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .series-nav h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 1.25rem;
+    }
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 6px;
+    }
+    .series-item {
+      font-size: 0.78rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+      cursor: default;
+    }
+    .series-item.active {
+      color: var(--text);
+      border-color: var(--text);
+      background: var(--bg);
+      font-weight: 600;
+      cursor: default;
+    }
+    .series-item .letter {
+      font-weight: 700;
+      font-size: 0.72rem;
+      display: block;
+      margin-bottom: 0.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    footer a { color: var(--text); text-decoration: none; font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 720px) {
+      nav { padding: 0 20px; }
+      .wrap { padding: 84px 20px 60px; }
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting to <a href="/apiseries/i-invoke-async">/apiseries/i-invoke-async</a>.</p>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-brand" href="/">
+      <img class="nav-mark" src="../aina_labs_symbol_only.svg" alt="aina labs mark" />
+      <div class="nav-wordmark">
+        <span class="heavy">aina</span><span class="light">labs</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/apiseries">API Series</a>
+      <a href="/">Home</a>
+      <a href="https://github.com/BoAina" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+
+    <a class="back" href="/apiseries">&larr; Back to API Series</a>
+
+    <div class="eyebrow">A Day in the Life of an API &nbsp;&middot;&nbsp; Letter I</div>
+    <h1>I is for Invoke Async</h1>
+    <p class="subtitle">The front desk that never makes you wait on hold.</p>
+    <p class="byline">By Bo Aina</p>
+
+    <p>Hi. I'm Invoke. Invoke Async, to be precise. You may be wondering what exactly I do around here. Let's talk about it.</p>
+
+    <p>My job is simple in concept and surprisingly elegant in practice. I take requests from the outside world and bring them inside - to one of the most powerful AI systems in enterprise software. Think of me as the front desk at a very busy, very intelligent office.</p>
+
+    <p>When an external application needs something done - compare these suppliers, analyze this invoice, flag this anomaly - it does not need to send a person into the building. It just calls me.</p>
+
+    <p>Here is what my day looks like.</p>
+
+    <h2>Morning. A request arrives.</h2>
+
+    <p>Someone's custom portal - built by a team that wanted their own front end, their own experience, their own workflow - sends me a message. It has already proven its identity. It has its access badge: an OAuth 2.0 bearer token. Security cleared. I let it in.</p>
+
+    <p>The message says: <em>"Compare M1000034 of org IMO and M1000040 of Org SBI."</em></p>
+
+    <p>I do not make them wait at the door while the work gets done. That would be rude - and frankly, impractical. AI takes time. It thinks, searches, reasons, sometimes even waits for a human to weigh in. So instead, I hand them a ticket.</p>
+
+    <div class="callout">"Here is your Job ID," I say. "Come back and check in shortly."</div>
+
+    <h2>Mid-morning. The checking begins.</h2>
+
+    <p>The external app is polite but persistent. Every few seconds it asks: <em>"Is it ready yet?"</em></p>
+
+    <p><span class="status running">RUNNING</span> &nbsp; I say. Still working.</p>
+
+    <p><span class="status running">RUNNING</span></p>
+
+    <p><span class="status running">RUNNING</span></p>
+
+    <p>Then something interesting happens. The status changes to <span class="status waiting">WAITING</span>.</p>
+
+    <p>Not because something went wrong. Because a human needs to approve the next step. That is not a flaw in the system. That is the system working exactly as it should. Enterprise AI that can pause for human judgment is enterprise AI you can trust.</p>
+
+    <p>Eventually: <span class="status complete">COMPLETE</span></p>
+
+    <p>The output field fills with the final answer - a rich, reasoned comparison - and the app retrieves it and presents it to the user. Who never had to log into a single Fusion screen.</p>
+
+    <h2>What I actually am.</h2>
+
+    <p>I am the reason Fusion AI does not have to be trapped inside the Fusion interface. I turn a powerful, complex AI system into something any application can call, wait on, and act upon - on its own terms, in its own context, for its own users.</p>
+
+    <p>I am asynchronous because the real world does not wait on a single connection. I return a Job ID because tracking matters. I support <span class="status waiting">WAITING</span> states because humans belong in the loop.</p>
+
+    <p>I am not just an API endpoint. I am the bridge between the intelligence inside and the workflows outside.</p>
+
+    <p>And on a good day, I make the boundary between those two worlds disappear entirely.</p>
+
+    <div class="author-bio">
+      <strong>Bo Aina</strong> writes about AI governance, financial systems architecture, and the structural shift from post-transaction ERP control to real-time authorization platforms. More at <a href="https://ainalabs.ai">ainalabs.ai</a> and <a href="https://github.com/BoAina">github.com/BoAina</a>.
+    </div>
+
+    <div class="series-nav">
+      <h3>A Day in the Life of an API - The Full Series</h3>
+      <div class="series-grid">
+        <span class="series-item"><span class="letter">A</span>Auth Token</span>
+        <span class="series-item"><span class="letter">B</span>The Body</span>
+        <span class="series-item"><span class="letter">C</span>The Cache</span>
+        <span class="series-item"><span class="letter">D</span>The Dependency</span>
+        <span class="series-item"><span class="letter">E</span>The Endpoint</span>
+        <span class="series-item"><span class="letter">F</span>The Fallback</span>
+        <span class="series-item"><span class="letter">G</span>The Gateway</span>
+        <span class="series-item"><span class="letter">H</span>The Header</span>
+        <span class="series-item active"><span class="letter">I</span>Invoke Async</span>
+        <span class="series-item"><span class="letter">J</span>The Job ID</span>
+        <span class="series-item"><span class="letter">K</span>The API Key</span>
+        <span class="series-item"><span class="letter">L</span>The Load Balancer</span>
+        <span class="series-item"><span class="letter">M</span>The Middleware</span>
+        <span class="series-item"><span class="letter">N</span>The Null</span>
+        <span class="series-item"><span class="letter">O</span>OAuth</span>
+        <span class="series-item"><span class="letter">P</span>The Payload</span>
+        <span class="series-item"><span class="letter">Q</span>The Queue</span>
+        <span class="series-item"><span class="letter">R</span>The Rate Limiter</span>
+        <span class="series-item"><span class="letter">S</span>The Status Code</span>
+        <span class="series-item"><span class="letter">T</span>The Timeout</span>
+        <span class="series-item"><span class="letter">U</span>The URL</span>
+        <span class="series-item"><span class="letter">V</span>The Version</span>
+        <span class="series-item"><span class="letter">W</span>The Webhook</span>
+        <span class="series-item"><span class="letter">X</span>The X-Header</span>
+        <span class="series-item"><span class="letter">Y</span>The YAML</span>
+        <span class="series-item"><span class="letter">Z</span>Zero Trust</span>
+      </div>
+    </div>
+
+    <footer>
+      <a href="/">Aina Labs</a> &nbsp;&middot;&nbsp; Bo Aina &nbsp;&middot;&nbsp; Enterprise financial systems, spend controls, and AI workflows &nbsp;&middot;&nbsp; <a href="https://github.com/BoAina">github.com/BoAina</a>
+    </footer>
+
+  </main>
 </body>
 </html>
