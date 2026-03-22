@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A Day in the Life of an API — Aina Labs</title>
+  <meta name="description" content="The API Series explores how modern APIs behave under real-world conditions, one concept at a time, through a persona-driven lens." />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --panel: #f5f5f5;
+      --text: #1a1a1a;
+      --muted: #666666;
+      --accent: #0066cc;
+      --line: #e0e0e0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.01em;
+    }
+
+    .back:hover { text-decoration: underline; }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin: 0 0 1rem;
+    }
+
+    .intro {
+      max-width: 760px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0 0 1rem;
+    }
+
+    .note {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .toc {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .toc h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.4rem;
+    }
+
+    .toc-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin: 0 0 1.5rem;
+    }
+
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .series-item {
+      display: block;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .series-item.active {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(125, 211, 252, 0.06);
+    }
+
+    .series-item .letter {
+      font-weight: 700;
+      font-size: 0.75rem;
+      display: block;
+      margin-bottom: 0.1rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="back" href="/">&larr; Back to Aina Labs</a>
+
+    <div class="eyebrow">API Series</div>
+    <h1>A Day in the Life of an API</h1>
+    <p class="intro">The API Series explores how modern APIs behave under real-world conditions &mdash; from authentication and rate limits to async execution and failure modes &mdash; one concept at a time, through a persona-driven lens.</p>
+    <p class="note">Read in order (A-Z), or jump to any concept.</p>
+
+    <section class="toc" aria-labelledby="series-toc-title">
+      <h2 id="series-toc-title">A Day in the Life of an API</h2>
+      <p class="toc-sub">An A-Z exploration of how APIs actually behave</p>
+
+      <div class="series-grid">
+        <span class="series-item"><span class="letter">A</span>Auth Token</span>
+        <span class="series-item"><span class="letter">B</span>The Body</span>
+        <span class="series-item"><span class="letter">C</span>The Cache</span>
+        <span class="series-item"><span class="letter">D</span>The Dependency</span>
+        <span class="series-item"><span class="letter">E</span>The Endpoint</span>
+        <span class="series-item"><span class="letter">F</span>The Fallback</span>
+        <span class="series-item"><span class="letter">G</span>The Gateway</span>
+        <span class="series-item"><span class="letter">H</span>The Header</span>
+        <a class="series-item active" href="/apiseries/i-invoke-async"><span class="letter">I</span>Invoke Async</a>
+        <span class="series-item"><span class="letter">J</span>The Job ID</span>
+        <span class="series-item"><span class="letter">K</span>The API Key</span>
+        <span class="series-item"><span class="letter">L</span>The Load Balancer</span>
+        <span class="series-item"><span class="letter">M</span>The Middleware</span>
+        <span class="series-item"><span class="letter">N</span>The Null</span>
+        <span class="series-item"><span class="letter">O</span>OAuth</span>
+        <span class="series-item"><span class="letter">P</span>The Payload</span>
+        <span class="series-item"><span class="letter">Q</span>The Queue</span>
+        <span class="series-item"><span class="letter">R</span>The Rate Limiter</span>
+        <span class="series-item"><span class="letter">S</span>The Status Code</span>
+        <span class="series-item"><span class="letter">T</span>The Timeout</span>
+        <span class="series-item"><span class="letter">U</span>The URL</span>
+        <span class="series-item"><span class="letter">V</span>The Version</span>
+        <span class="series-item"><span class="letter">W</span>The Webhook</span>
+        <span class="series-item"><span class="letter">X</span>The X-Header</span>
+        <span class="series-item"><span class="letter">Y</span>The YAML</span>
+        <span class="series-item"><span class="letter">Z</span>Zero Trust</span>
+      </div>
+    </section>
+
+    <footer>
+      <a href="/">Aina Labs</a> &nbsp;&middot;&nbsp; Bo Aina &nbsp;&middot;&nbsp; Enterprise financial systems, spend controls, and AI workflows &nbsp;&middot;&nbsp; <a href="https://github.com/BoAina">github.com/BoAina</a>
+    </footer>
+  </main>
+</body>
+</html>
