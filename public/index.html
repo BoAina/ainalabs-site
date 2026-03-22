@@ -143,6 +143,92 @@
     }
     .see-all:hover { color: var(--text); border-color: var(--text); }
 
+    /* ── WRITING FEATURE ── */
+    .essay-feature {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.8fr);
+      gap: 32px;
+      padding: 32px;
+      margin-bottom: 40px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
+    }
+    .essay-feature:hover {
+      background: #fcfcfc;
+      border-color: #d8d8d8;
+      transform: translateY(-1px);
+    }
+    .essay-kicker {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 14px;
+    }
+    .essay-title {
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .essay-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      max-width: 580px;
+    }
+    .essay-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 580px;
+    }
+    .essay-cta {
+      display: inline-block;
+      margin-top: 24px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .essay-meta {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+    .essay-meta-card {
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.88);
+    }
+    .essay-meta-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .essay-meta-copy {
+      font-size: 0.85rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .writing-subsection {
+      margin-top: 10px;
+      padding-top: 36px;
+      border-top: 1px solid var(--line);
+    }
+
     /* ── API SERIES ── */
     .series-grid {
       display: grid;
@@ -280,6 +366,7 @@
       .hero { grid-template-columns: 1fr; padding: 110px 20px 60px; gap: 40px; }
       .hero-right { display: none; }
       .section { padding: 52px 20px; }
+      .essay-feature { grid-template-columns: 1fr; padding: 24px; }
       .about-strip .section { grid-template-columns: 1fr; }
       footer { padding: 24px 20px; flex-direction: column; gap: 8px; text-align: center; }
     }
@@ -324,11 +411,47 @@
     </div>
   </section>
 
-  <!-- API SERIES -->
-  <section class="section" id="series">
+  <!-- WRITING -->
+  <section class="section" id="writing">
     <div class="section-header">
       <div>
         <div class="section-label">Writing</div>
+        <div class="section-title">Essays and Series</div>
+        <div class="section-sub">Long-form writing on enterprise AI, financial systems, and how modern APIs behave under load.</div>
+      </div>
+      <a class="see-all" href="/essays/when-spend-intelligence-meets-erp-intelligence">Featured Essay →</a>
+    </div>
+
+    <a class="essay-feature" href="/essays/when-spend-intelligence-meets-erp-intelligence">
+      <div>
+        <div class="essay-kicker">Featured Essay</div>
+        <div class="essay-title">When Spend Intelligence Meets ERP Intelligence</div>
+        <div class="essay-subtitle">How Financial Context Aware Authorization Could Redefine Pre-Spend Control</div>
+        <div class="essay-desc">
+          A closer look at what changes when programmable authorization can evaluate policy, budget reality,
+          encumbrances, and ERP context before money moves.
+        </div>
+        <div class="essay-cta">Read Essay →</div>
+      </div>
+      <div class="essay-meta">
+        <div class="essay-meta-card">
+          <div class="essay-meta-label">Core Question</div>
+          <div class="essay-meta-copy">What happens when the authorization layer can see financial truth, not just card limits?</div>
+        </div>
+        <div class="essay-meta-card">
+          <div class="essay-meta-label">Focus</div>
+          <div class="essay-meta-copy">Programmable spend controls, ERP budget intelligence, and pre-spend decisioning.</div>
+        </div>
+        <div class="essay-meta-card">
+          <div class="essay-meta-label">Format</div>
+          <div class="essay-meta-copy">Long-form essay on real-time finance architecture and governed automation.</div>
+        </div>
+      </div>
+    </a>
+
+    <div class="section-header writing-subsection" id="series">
+      <div>
+        <div class="section-label">Series</div>
         <div class="section-title">The API Series</div>
         <div class="section-sub">A Day in the Life of an API - one letter at a time.</div>
       </div>
